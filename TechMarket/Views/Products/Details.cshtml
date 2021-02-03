@@ -1,0 +1,58 @@
+﻿@model TechMarket.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.productbrand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productbrand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productmodel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productmodel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stock)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.productid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

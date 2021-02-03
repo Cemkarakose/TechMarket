@@ -1,0 +1,72 @@
+﻿@model IEnumerable<TechMarket.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Index</h2>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.TextBox("searchString", ViewBag.currentSearchString as string)
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </p>
+}
+
+@if (User.IsInRole("Admin"))
+{
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Brand", "Index", new { sortOrder = ViewBag.NextSortOrderBrand, category = ViewBag.category })
+        </th>
+        <th>
+            @Html.ActionLink("Model", "Index", new { sortOrder = ViewBag.NextSortOrderModel, category = ViewBag.category })
+        </th>
+        <th>
+            @Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.NextSortOrderPrice, category = ViewBag.category })
+        </th>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <th>
+                Number of Stocks
+            </th>
+            <th>Action Links</th>
+        }
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.productbrand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productmodel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            @if (User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.stock)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.productid }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.productid }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.productid })
+                </td>
+            }
+
+        </tr>
+    }
+
+</table>
